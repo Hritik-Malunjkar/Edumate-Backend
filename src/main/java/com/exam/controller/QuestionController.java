@@ -2,6 +2,7 @@ package com.exam.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -117,8 +118,15 @@ public class QuestionController {
 			}
 		}
 		
-		Map<String, Object> map = Map.of("marksGot",marksGot,"correctAnswers",correctAnswers,"attempted",attempted);
-		return ResponseEntity.ok(map);
+//		Map<String, Object> map = Map.of("marksGot",marksGot,"correctAnswers",correctAnswers,"attempted",attempted);
+//		return ResponseEntity.ok(map);
+		
+		
+	    Map<String, Object> map = new HashMap<>();
+	    map.put("marksGot", marksGot);
+	    map.put("correctAnswers", correctAnswers);
+	    map.put("attempted", attempted);
+	    return ResponseEntity.ok(map);
 	}
 
 }

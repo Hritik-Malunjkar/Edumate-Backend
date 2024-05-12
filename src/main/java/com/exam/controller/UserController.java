@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -142,15 +143,24 @@ public class UserController {
         if (isValidOTP) {
             try {
                 service.updatePassword(email, confirmPassword);
-                return ResponseEntity.ok(Map.of("message", "Password updated successfully"));
+                Map<String, String> map = new HashMap<>();
+                map.put("message", "Password updated successfully");
+                return ResponseEntity.ok(map);
             } catch (Exception e) {
                 e.printStackTrace();
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(Map.of("message", "An error occurred while updating the password."));
+//                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+//                        .body(Map.of("message", "An error occurred while updating the password."));
+                Map<String, String> map = new HashMap<>();
+                map.put("message","An error occurred while updating the password.");
+                return ResponseEntity.ok(map);
             }
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(Map.of("message", "Invalid OTP"));
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+//                    .body(Map.of("message", "Invalid OTP"));
+        	Map<String, String> map = new HashMap<>();
+        	map.put("message","Invalid OTP");
+            return ResponseEntity.ok(map);
+        	
         }
     }
 	

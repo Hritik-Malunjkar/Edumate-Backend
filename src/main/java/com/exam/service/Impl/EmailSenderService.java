@@ -45,7 +45,7 @@ public class EmailSenderService {
 
 		String htmlContent = "OTP: " + otp;
 
-		System.out.println("otp" + otp);
+		System.out.println("OTP: " + otp);
 		
 		 User user = userRepository.findByEmail(email);
          user.setOtp(otp);
