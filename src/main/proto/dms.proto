@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option java_package = "com.example.document_management_service";
+option java_outer_classname = "DmsProto";
+
+// Define the service
+service DmsService {
+  // Define the method to upload a file
+  rpc UploadDocument (DocumentUploadRequest) returns (DocumentUploadResponse);
+  rpc DeleteDocument (DeleteDocumentRequest) returns (DeleteDocumentResponse);  // New method to delete a fil
+  rpc GetDocument (GetDocumentRequest) returns (GetDocumentResponse);
+}
+
+// Define the request message
+message DocumentUploadRequest {
+  string originalDocumentName = 1;   // The name of the file
+  string documentPath = 2;      // The file's storage path
+  string DocumentSize = 3;           // The size of the file
+  string DocumentType = 4;           // The file's type (e.g., PDF, image)
+  string documentBase64 = 5;             // The file's data in Base64 format
+}
+
+// Define the response message
+message DocumentUploadResponse {
+  string message = 1;            // A message confirming the file upload
+  int32 statusCode = 2;          // HTTP-like status code
+  string docUuid = 3;
+}
+
+
+// Define the request message for file deletion
+message DeleteDocumentRequest {
+  string docUuid = 1;  // The UUID of the file to be deleted, now using int64 (Long in Java)
+}
+
+// Define the response message for file deletion
+message DeleteDocumentResponse {
+  string message = 1;   // Confirmation message
+  int32 statusCode = 2; // HTTP-like status code
+}
+
+
+message GetDocumentRequest {
+  string docUuid = 1;  // The ID of the file to be deleted, now using int64 (Long in Java)
+}
+
+
+// Define the response message for file deletion
+message GetDocumentResponse {
+  string message = 1;   // Confirmation message
+  int32 statusCode = 2; // HTTP-like status code
+  string originalFilename = 3;
+  string documentBase64 = 4;
+}
