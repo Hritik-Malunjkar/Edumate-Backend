@@ -65,7 +65,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 	        .csrf().disable()
 	        .cors().disable()
 	        .authorizeRequests()
-	            .antMatchers("/generate-token", "/user/", "/user/sendEmail", "/user/checkEmail", "/user/update-password-and-verify-otp").permitAll() // Add /email/send here
+	            .antMatchers("/generate-token", "/user/", "/user/sendEmail", "/user/checkEmail", "/user/update-password-and-verify-otp", "/dms/upload").permitAll() // Add /email/send here
 	            .antMatchers(HttpMethod.OPTIONS).permitAll()
 	            .anyRequest().authenticated()
 	        .and()

@@ -9,15 +9,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class GrpcConfig {
-
-    /**
-     * Creates a ManagedChannel for a gRPC server.
-     *
-     * @param ipAddress          The IP address of the gRPC server.
-     * @param port               The port of the gRPC server.
-     * @param maxInboundMessageSize The maximum inbound message size in bytes.
-     * @return A configured ManagedChannel instance.
-     */
     public ManagedChannel getManagedChannel(String ipAddress, int port, int maxInboundMessageSize) {
         return ManagedChannelBuilder
                 .forAddress(ipAddress, port)
@@ -26,13 +17,13 @@ public class GrpcConfig {
                 .build();
     }
 
-    /**
-     * Defines a ManagedChannel bean for a specific gRPC server.
-     *
-     * @return The ManagedChannel instance.
-     */
     @Bean
     public ManagedChannel dmsManagedChannel() {
-        return getManagedChannel("192.168.31.110", 8098, 15 * 1024 * 1024);
+        return getManagedChannel("localhost", 8098, 15 * 1024 * 1024);
+    }
+
+    @Bean
+    public com.example.document_management_service.DmsServiceGrpc.DmsServiceBlockingStub dmsServiceBlockingStub(ManagedChannel dmsManagedChannel) {
+        return com.example.document_management_service.DmsServiceGrpc.newBlockingStub(dmsManagedChannel);
     }
 }
