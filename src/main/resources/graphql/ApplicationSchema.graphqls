@@ -1,0 +1,6 @@
+
+type Category{
+    cid:Int,
+    title:String,
+    description:String
+}

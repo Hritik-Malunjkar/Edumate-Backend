@@ -1,6 +1,8 @@
 package com.exam.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,8 +36,13 @@ public class CategoryController {
 	
 	//Get Category by id
 	
-	@GetMapping("/{categoryId}")
-	public Category getCategory(@PathVariable("categoryId") Long categoryId) {
+//	@GetMapping("/{categoryId}")
+//	public Category getCategory(@PathVariable("categoryId") Long categoryId) {
+//		return this.categoryService.getCategory(categoryId);
+//	}
+
+	@QueryMapping
+	public Category getCategory(@Argument Long categoryId) {
 		return this.categoryService.getCategory(categoryId);
 	}
 	

@@ -61,20 +61,22 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-	    http
-	        .csrf().disable()
-	        .cors().disable()
-	        .authorizeRequests()
-	            .antMatchers("/generate-token", "/user/", "/user/sendEmail", "/user/checkEmail", "/user/update-password-and-verify-otp", "/dms/upload").permitAll() // Add /email/send here
-	            .antMatchers(HttpMethod.OPTIONS).permitAll()
-	            .anyRequest().authenticated()
-	        .and()
-	        .exceptionHandling()
-	            .authenticationEntryPoint(unauthorizedHandler)
-	        .and()
-	        .sessionManagement()
-	            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-	    http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+		http
+				.csrf().disable()
+				.cors()
+				.and()
+				.authorizeRequests()
+				.antMatchers("/generate-token", "/user/", "/user/sendEmail", "/user/checkEmail", "/user/update-password-and-verify-otp", "/dms/upload", "/graphql").permitAll()
+				.antMatchers(HttpMethod.OPTIONS).permitAll()
+				.anyRequest().authenticated()
+				.and()
+				.exceptionHandling()
+				.authenticationEntryPoint(unauthorizedHandler)
+				.and()
+				.sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 
 
