@@ -23,7 +23,6 @@ import com.exam.model.User;
 import com.exam.service.Impl.UserDetailsServiceImpl;
 
 @RestController
-@CrossOrigin("*")
 public class AuthenticateController {
 
 	@Autowired

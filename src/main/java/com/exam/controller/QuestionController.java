@@ -25,7 +25,6 @@ import com.exam.service.QuestionService;
 import com.exam.service.QuizService;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/question")
 public class QuestionController {
 

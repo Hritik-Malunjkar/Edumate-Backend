@@ -19,7 +19,6 @@ import com.exam.service.CategoryService;
 
 @RestController
 @RequestMapping("/category")
-@CrossOrigin("*")
 public class CategoryController {
 
 	@Autowired
@@ -42,7 +41,7 @@ public class CategoryController {
 //	}
 
 	@QueryMapping
-	public Category getCategory(@Argument Long categoryId) {
+	public Category getCategoryById(@Argument Long categoryId) {
 		return this.categoryService.getCategory(categoryId);
 	}
 	

@@ -1,4 +1,4 @@
 
 type Query{
-    getCategory(categoryId: Int!):Category
+    getCategoryById(categoryId: Int!):Category
 }

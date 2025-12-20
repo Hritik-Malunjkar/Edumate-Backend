@@ -18,7 +18,6 @@ import com.exam.service.QuizResultService;
 
 @RestController
 @RequestMapping("/quizresult")
-@CrossOrigin("*")
 public class QuizResultController {
 
 	@Autowired
